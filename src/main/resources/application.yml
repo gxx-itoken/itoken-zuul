@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: itoken-zuul
+  # 服务链路追踪Zipkin客户端
+  zipkin:
+    base-url: http://localhost:9411
+  # 配置admin
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
+
+server:
+  port: 8769
+
+# 统一注册到服务注册与发现中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+# 配置Zuul路由
+zuul:
+  routes:
+    api:
+      path: /api/**
+      serviceId: itoken-feign
